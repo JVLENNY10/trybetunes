@@ -22,13 +22,8 @@ class Login extends React.Component {
   onInputChange({ target }) {
     const { value } = target;
 
-    this.setState({
-      nameInput: value,
-    }, () => {
-      this.setState({
-        buttonDisabled: this.buttonEnabled(),
-      });
-    });
+    this.setState({ nameInput: value },
+      () => this.setState({ buttonDisabled: this.buttonEnabled() }));
   }
 
   buttonEnabled() {

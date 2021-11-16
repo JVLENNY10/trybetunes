@@ -1,17 +1,17 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { createUser } from '../services/userAPI';
-import Carreagando from '../components/Carregando';
+import Loading from '../components/Loading';
 
 class Login extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      nameInput: '',
       buttonDisabled: true,
-      redirect: false,
       loading: false,
+      nameInput: '',
+      redirect: false,
     };
 
     this.buttonEnabled = this.buttonEnabled.bind(this);
@@ -70,7 +70,7 @@ class Login extends React.Component {
           </button>
         </form>
 
-        { loading && <Carreagando /> }
+        { loading && <Loading /> }
         { redirect && <Redirect to="/search" /> }
       </div>
     );

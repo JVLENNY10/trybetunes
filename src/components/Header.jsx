@@ -11,11 +11,19 @@ class Header extends React.Component {
       loading: true,
       userName: '',
     };
+
+    this.printLoading = this.printLoading.bind(this);
   }
 
   // Ju Barcelos(T16) me ajudou com essa parte do componentDidMount().
   componentDidMount() {
-    getUser().then((user) => this.setState({ userName: user.name, loading: false }));
+    this.printLoading();
+  }
+
+  printLoading() {
+    getUser().then((user) => this.setState({
+      userName: user.name, loading: false,
+    }));
   }
 
   render() {

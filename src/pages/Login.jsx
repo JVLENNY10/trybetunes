@@ -41,6 +41,7 @@ class Login extends React.Component {
   submitButton() {
     const { nameInput } = this.state;
     this.setState({ loading: true });
+    // Ju Barcelos(T16) me ajudou com essa parte do then().
     createUser({ name: nameInput })
       .then(() => this.setState({ redirect: true, loading: false }));
   }

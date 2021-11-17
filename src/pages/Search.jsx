@@ -9,7 +9,7 @@ class Search extends React.Component {
     super();
 
     this.state = {
-      arrayResults: [],
+      arrayAlbuns: [],
       buttonDisabled: true,
       loading: false,
       results: false,
@@ -38,9 +38,9 @@ class Search extends React.Component {
   submitButton() {
     const { search } = this.state;
     this.setState({ loading: true, search: '' });
-    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o arrayResults corretamente.
-    searchAlbumsAPI(search).then((promise) => this.setState({
-      arrayResults: promise,
+    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o arrayAlbuns corretamente.
+    searchAlbumsAPI(search).then((objectsAlbuns) => this.setState({
+      arrayAlbuns: objectsAlbuns,
       buttonDisabled: true,
       loading: false,
       results: true,
@@ -49,7 +49,7 @@ class Search extends React.Component {
   }
 
   render() {
-    const { arrayResults, buttonDisabled, loading, results, resultsMessage,
+    const { arrayAlbuns, buttonDisabled, loading, results, resultsMessage,
       search } = this.state;
 
     return (
@@ -79,26 +79,29 @@ class Search extends React.Component {
 
           {
             results && (
-              arrayResults.length > 0 ? (
+              arrayAlbuns.length > 0 ? (
                 <section>
-                  <p>
+                  <h4>
                     Resultado de álbuns de:
                     { resultsMessage }
-                  </p>
+                  </h4>
 
                   <section>
                     {
-                      arrayResults.map((result) => (
+                      arrayAlbuns.map((album) => (
                         <Link
-                          data-testid={ `link-to-album-${result.collectionId}` }
-                          key={ result.collectionId }
-                          to={ `/album/${result.collectionId}` }
+                          data-testid={ `link-to-album-${album.collectionId}` }
+                          key={ album.collectionId }
+                          to={ `/album/${album.collectionId}` }
                         >
-                          <img
-                            alt={ result.collectionName }
-                            src={ result.artworkUrl100 }
-                          />
-                          <h4>{ result.collectionName }</h4>
+                          <div>
+                            <img
+                              alt={ album.collectionName }
+                              src={ album.artworkUrl100 }
+                            />
+                            <h4>{ album.collectionName }</h4>
+                            <h5>{ album.artistName }</h5>
+                          </div>
                         </Link>
                       ))
                     }

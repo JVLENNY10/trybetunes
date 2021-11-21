@@ -9,7 +9,7 @@ class Search extends React.Component {
     super();
 
     this.state = {
-      arrayAlbuns: [],
+      arrayAlbums: [],
       buttonDisabled: true,
       loading: false,
       results: false,
@@ -24,7 +24,6 @@ class Search extends React.Component {
 
   onInputChange({ target }) {
     const { value } = target;
-
     this.setState({ search: value },
       () => this.setState({ buttonDisabled: this.buttonEnabled() }));
   }
@@ -35,12 +34,13 @@ class Search extends React.Component {
     return true;
   }
 
-  submitButton() {
+  submitButton(event) {
+    event.preventDefault();
     const { search } = this.state;
     this.setState({ loading: true, search: '' });
-    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o arrayAlbuns corretamente.
-    searchAlbumsAPI(search).then((objectsAlbuns) => this.setState({
-      arrayAlbuns: objectsAlbuns,
+    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o arrayAlbums corretamente.
+    searchAlbumsAPI(search).then((objectsAlbums) => this.setState({
+      arrayAlbums: objectsAlbums,
       buttonDisabled: true,
       loading: false,
       results: true,
@@ -49,16 +49,17 @@ class Search extends React.Component {
   }
 
   render() {
-    const { arrayAlbuns, buttonDisabled, loading, results, resultsMessage,
+    const { arrayAlbums, buttonDisabled, loading, results, resultsMessage,
       search } = this.state;
 
     return (
       <div data-testid="page-search">
         <Header />
+
         <form>
           <input
             data-testid="search-artist-input"
-            name="search"
+            name={ search }
             onChange={ this.onInputChange }
             type="text"
             value={ search }
@@ -70,47 +71,47 @@ class Search extends React.Component {
                 data-testid="search-artist-button"
                 disabled={ buttonDisabled }
                 onClick={ this.submitButton }
-                type="button"
+                type="submit"
               >
                 Pesquisar
               </button>
             )
           }
-
-          {
-            results && (
-              arrayAlbuns.length > 0 ? (
-                <section>
-                  <h4>
-                    Resultado de álbuns de:
-                    { resultsMessage }
-                  </h4>
-
-                  <section>
-                    {
-                      arrayAlbuns.map((album) => (
-                        <Link
-                          data-testid={ `link-to-album-${album.collectionId}` }
-                          key={ album.collectionId }
-                          to={ `/album/${album.collectionId}` }
-                        >
-                          <div>
-                            <img
-                              alt={ album.collectionName }
-                              src={ album.artworkUrl100 }
-                            />
-                            <h4>{ album.collectionName }</h4>
-                            <h5>{ album.artistName }</h5>
-                          </div>
-                        </Link>
-                      ))
-                    }
-                  </section>
-                </section>
-              ) : 'Nenhum álbum foi encontrado'
-            )
-          }
         </form>
+
+        {
+          results && (
+            arrayAlbums.length > 0 ? (
+              <section>
+                <h4>
+                  Resultado de álbuns de:
+                  { resultsMessage }
+                </h4>
+
+                <section>
+                  {
+                    arrayAlbums.map((album) => (
+                      <Link
+                        data-testid={ `link-to-album-${album.collectionId}` }
+                        key={ album.collectionId }
+                        to={ `/album/${album.collectionId}` }
+                      >
+                        <div>
+                          <img
+                            alt={ album.collectionName }
+                            src={ album.artworkUrl100 }
+                          />
+                          <h4>{ album.collectionName }</h4>
+                          <h5>{ album.artistName }</h5>
+                        </div>
+                      </Link>
+                    ))
+                  }
+                </section>
+              </section>
+            ) : 'Nenhum álbum foi encontrado'
+          )
+        }
       </div>
     );
   }

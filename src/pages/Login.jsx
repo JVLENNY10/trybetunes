@@ -21,7 +21,6 @@ class Login extends React.Component {
 
   onInputChange({ target }) {
     const { value } = target;
-
     this.setState({ nameInput: value },
       () => this.setState({ buttonDisabled: this.buttonEnabled() }));
   }
@@ -33,7 +32,8 @@ class Login extends React.Component {
     return true;
   }
 
-  submitButton() {
+  submitButton(event) {
+    event.preventDefault();
     const { nameInput } = this.state;
     this.setState({ loading: true });
     // Ju Barcelos(T16) me ajudou com essa parte do then().
@@ -42,14 +42,14 @@ class Login extends React.Component {
   }
 
   render() {
-    const { nameInput, buttonDisabled, redirect, loading } = this.state;
+    const { buttonDisabled, loading, nameInput, redirect } = this.state;
 
     return (
       <div data-testid="page-login">
-        <form onSubmit={ this.submitButton }>
+        <form>
           <input
             data-testid="login-name-input"
-            name="nameInput"
+            name={ nameInput }
             onChange={ this.onInputChange }
             placeholder="Seu nome aqui"
             type="text"
@@ -60,7 +60,7 @@ class Login extends React.Component {
             data-testid="login-submit-button"
             disabled={ buttonDisabled }
             onClick={ this.submitButton }
-            type="button"
+            type="submit"
           >
             Entrar
           </button>

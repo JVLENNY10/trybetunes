@@ -1,5 +1,4 @@
 import React from 'react';
-// import propTypes from 'prop-types';
 import Header from '../components/Header';
 import getMusics from '../services/musicsAPI';
 import MusicCard from '../components/MusicCard';
@@ -7,11 +6,7 @@ import MusicCard from '../components/MusicCard';
 class Album extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      arrayMusics: [],
-    };
-
+    this.state = { musics: [] };
     this.loadMusics = this.loadMusics.bind(this);
   }
 
@@ -24,32 +19,32 @@ class Album extends React.Component {
   }
 
   loadMusics(albumId) {
-    getMusics(albumId)
-      .then((objectsMusics) => this.setState({ arrayMusics: objectsMusics }));
+    getMusics(albumId).then((musicObjects) => this.setState({ musics: musicObjects }));
   }
 
   render() {
-    const { arrayMusics } = this.state;
+    const { musics } = this.state;
 
     return (
       <div data-testid="page-album">
         <Header />
 
         {
-          arrayMusics.map((music, index) => (
+          musics.map((song, index) => (
             index === 0 ? (
-              <div key={ music.collectionId }>
-                <h3 data-testid="album-name">{ music.collectionName }</h3>
-                <h4 data-testid="artist-name">{ music.artistName }</h4>
+              <div key={ song.collectionId }>
+                <h3 data-testid="album-name">{ song.collectionName }</h3>
+                <h4 data-testid="artist-name">{ song.artistName }</h4>
               </div>
             ) : (
               <MusicCard
                 audioComponent="audio-component"
-                checkboxMusicTrackId={ `checkbox-music-${music.trackId}` }
-                key={ music.trackId }
-                music={ music }
-                previewUrl={ music.previewUrl }
-                trackName={ music.trackName }
+                checkboxMusicTrackId={ `checkbox-music-${song.trackId}` }
+                key={ song.trackId }
+                previewUrl={ song.previewUrl }
+                song={ song }
+                trackId={ song.trackId }
+                trackName={ song.trackName }
               />
             )
           ))

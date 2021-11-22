@@ -9,48 +9,54 @@ class Search extends React.Component {
     super();
 
     this.state = {
-      arrayAlbums: [],
+      albums: [],
       buttonDisabled: true,
+      input: '',
       loading: false,
-      results: false,
-      resultsMessage: '',
-      search: '',
+      resultMessage: '',
+      searched: false,
     };
 
-    this.buttonEnabled = this.buttonEnabled.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
+    this.enableButton = this.enableButton.bind(this);
+    this.inputChange = this.inputChange.bind(this);
     this.submitButton = this.submitButton.bind(this);
   }
 
-  onInputChange({ target }) {
-    const { value } = target;
-    this.setState({ search: value },
-      () => this.setState({ buttonDisabled: this.buttonEnabled() }));
+  enableButton() {
+    const { input } = this.state;
+    if (input.length >= 2) return false;
+    return true;
   }
 
-  buttonEnabled() {
-    const { search } = this.state;
-    if (search.length >= 2) return false;
-    return true;
+  inputChange({ target }) {
+    const { value } = target;
+    this.setState({ input: value },
+      () => this.setState({ buttonDisabled: this.enableButton() }));
   }
 
   submitButton(event) {
     event.preventDefault();
-    const { search } = this.state;
-    this.setState({ loading: true, search: '' });
-    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o arrayAlbums corretamente.
-    searchAlbumsAPI(search).then((objectsAlbums) => this.setState({
-      arrayAlbums: objectsAlbums,
+    const { input } = this.state;
+    this.setState({ input: '', loading: true });
+    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o albums corretamente.
+    searchAlbumsAPI(input).then((objectsAlbums) => this.setState({
+      albums: objectsAlbums,
       buttonDisabled: true,
       loading: false,
-      results: true,
-      resultsMessage: ` ${search}`,
+      searched: true,
+      resultMessage: ` ${input}`,
     }));
   }
 
   render() {
-    const { arrayAlbums, buttonDisabled, loading, results, resultsMessage,
-      search } = this.state;
+    const {
+      albums,
+      buttonDisabled,
+      input,
+      loading,
+      resultMessage,
+      searched,
+    } = this.state;
 
     return (
       <div data-testid="page-search">
@@ -59,10 +65,10 @@ class Search extends React.Component {
         <form>
           <input
             data-testid="search-artist-input"
-            name={ search }
-            onChange={ this.onInputChange }
+            name={ input }
+            onChange={ this.inputChange }
             type="text"
-            value={ search }
+            value={ input }
           />
 
           {
@@ -80,17 +86,17 @@ class Search extends React.Component {
         </form>
 
         {
-          results && (
-            arrayAlbums.length > 0 ? (
+          searched && (
+            albums.length > 0 ? (
               <section>
                 <h4>
                   Resultado de álbuns de:
-                  { resultsMessage }
+                  { resultMessage }
                 </h4>
 
                 <section>
                   {
-                    arrayAlbums.map((album) => (
+                    albums.map((album) => (
                       <Link
                         data-testid={ `link-to-album-${album.collectionId}` }
                         key={ album.collectionId }

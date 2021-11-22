@@ -6,54 +6,47 @@ import Loading from '../components/Loading';
 class Login extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      buttonDisabled: true,
-      loading: false,
-      nameInput: '',
-      redirect: false,
-    };
-
-    this.buttonEnabled = this.buttonEnabled.bind(this);
-    this.onInputChange = this.onInputChange.bind(this);
+    this.state = { buttonDisabled: true, input: '', loading: false, redirecting: false };
+    this.enableButton = this.enableButton.bind(this);
+    this.inputChange = this.inputChange.bind(this);
     this.submitButton = this.submitButton.bind(this);
   }
 
-  onInputChange({ target }) {
-    const { value } = target;
-    this.setState({ nameInput: value },
-      () => this.setState({ buttonDisabled: this.buttonEnabled() }));
+  enableButton() {
+    const minInput = 3;
+    const { input } = this.state;
+    if (input.length >= minInput) return false;
+    return true;
   }
 
-  buttonEnabled() {
-    const minInput = 3;
-    const { nameInput } = this.state;
-    if (nameInput.length >= minInput) return false;
-    return true;
+  inputChange({ target }) {
+    const { value } = target;
+    this.setState({ input: value },
+      () => this.setState({ buttonDisabled: this.enableButton() }));
   }
 
   submitButton(event) {
     event.preventDefault();
-    const { nameInput } = this.state;
+    const { input } = this.state;
     this.setState({ loading: true });
     // Ju Barcelos(T16) me ajudou com essa parte do then().
-    createUser({ name: nameInput })
-      .then(() => this.setState({ redirect: true, loading: false }));
+    createUser({ name: input })
+      .then(() => this.setState({ loading: false, redirecting: true }));
   }
 
   render() {
-    const { buttonDisabled, loading, nameInput, redirect } = this.state;
+    const { buttonDisabled, input, loading, redirecting } = this.state;
 
     return (
       <div data-testid="page-login">
         <form>
           <input
             data-testid="login-name-input"
-            name={ nameInput }
-            onChange={ this.onInputChange }
+            name={ input }
+            onChange={ this.inputChange }
             placeholder="Seu nome aqui"
             type="text"
-            value={ nameInput }
+            value={ input }
           />
 
           <button
@@ -67,7 +60,7 @@ class Login extends React.Component {
         </form>
 
         { loading && <Loading /> }
-        { redirect && <Redirect to="/search" /> }
+        { redirecting && <Redirect to="/search" /> }
       </div>
     );
   }

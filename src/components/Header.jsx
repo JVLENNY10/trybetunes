@@ -6,24 +6,17 @@ import Loading from './Loading';
 class Header extends React.Component {
   constructor() {
     super();
-
-    this.state = {
-      loading: true,
-      userName: '',
-    };
-
-    this.printLoading = this.printLoading.bind(this);
+    this.state = { loading: true, userName: '' };
+    this.loadUserName = this.loadUserName.bind(this);
   }
 
-  // Ju Barcelos(T16) me ajudou com essa parte do componentDidMount().
+  // Ju Barcelos(T16) me ajudou com a parte do componentDidMount().
   componentDidMount() {
-    this.printLoading();
+    this.loadUserName();
   }
 
-  printLoading() {
-    getUser().then((user) => this.setState({
-      userName: user.name, loading: false,
-    }));
+  loadUserName() {
+    getUser().then((user) => this.setState({ loading: false, userName: user.name }));
   }
 
   render() {
@@ -31,14 +24,7 @@ class Header extends React.Component {
 
     return (
       <header data-testid="header-component">
-        {
-          loading ? <Loading /> : (
-            <h3 data-testid="header-user-name">
-              { userName }
-            </h3>
-          )
-        }
-
+        { loading ? <Loading /> : <h3 data-testid="header-user-name">{ userName }</h3> }
         <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
         <Link data-testid="link-to-favorites" to="/favorites">Favoritas</Link>
         <Link data-testid="link-to-profile" to="/profile">Perfil</Link>

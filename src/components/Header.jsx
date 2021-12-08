@@ -24,7 +24,7 @@ class Header extends React.Component {
     const { loading, userName } = this.state;
 
     return (
-      <header>
+      <header data-testid="header-component">
         <section className="informations-header">
           <img alt="trybe-tunes-icon" src={ trybeTunesIcon } />
           <div>

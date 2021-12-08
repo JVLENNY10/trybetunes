@@ -1,7 +1,8 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { createUser } from '../services/userAPI';
 import Loading from '../components/Loading';
+import { createUser } from '../services/userAPI';
+import trybeTunesIcon from '../icons/trybe-tunes-icon.png';
 
 class Login extends React.Component {
   constructor() {
@@ -38,28 +39,33 @@ class Login extends React.Component {
     const { buttonDisabled, input, loading, redirecting } = this.state;
 
     return (
-      <div data-testid="page-login">
-        <form>
-          <input
-            data-testid="login-name-input"
-            name={ input }
-            onChange={ this.inputChange }
-            placeholder="Seu nome aqui"
-            type="text"
-            value={ input }
-          />
+      <div className="page-login" data-testid="page-login">
+        <img alt="trybe-tunes-icon" src={ trybeTunesIcon } />
 
-          <button
-            data-testid="login-submit-button"
-            disabled={ buttonDisabled }
-            onClick={ this.submitButton }
-            type="submit"
-          >
-            Entrar
-          </button>
-        </form>
+        {
+          loading ? <Loading /> : (
+            <form>
+              <input
+                data-testid="login-name-input"
+                name={ input }
+                onChange={ this.inputChange }
+                placeholder="Seu nome aqui"
+                type="text"
+                value={ input }
+              />
 
-        { loading && <Loading /> }
+              <button
+                data-testid="login-submit-button"
+                disabled={ buttonDisabled }
+                onClick={ this.submitButton }
+                type="submit"
+              >
+                Entrar
+              </button>
+            </form>
+          )
+        }
+
         { redirecting && <Redirect to="/search" /> }
       </div>
     );

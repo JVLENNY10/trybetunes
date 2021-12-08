@@ -1,0 +1,261 @@
+.page-login {
+  background-color: #023031;
+  height: 100vh;
+  text-align: center;
+}
+
+.page-login img {
+  margin-top: 100px;
+}
+
+.page-login form {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.9);
+  height: 314px;
+  margin: 5% auto;
+  text-align: center;
+  width: 697px;
+}
+
+.page-login form button {
+  align-items: center;
+  background: #036b52;
+  border-radius: 2px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.8);
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  height: 45px;
+  padding: 8px 32px;
+  width: 555px;
+}
+
+.search-page form button {
+  background: #036b52;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+  color: white;
+  font-family: sans-serif;
+  font-size: 18px;
+  height: 45px;
+  margin-left: 15px;
+  text-align: center;
+  width: 135px;
+}
+
+.page-login form button:hover {
+  cursor: pointer;
+  height: 50px;
+  width: 560px;
+}
+
+.search-page form button:hover {
+  cursor: pointer;
+}
+
+.page-login form input {
+  background: white;
+  border: 3px solid #036b52;
+  border-radius: 2px;
+  color: #29313d;
+  font-size: 20px;
+  height: 25px;
+  margin: 100px auto 20px;
+  padding: 12px 16px;
+  width: 519px;
+}
+
+.informations-header {
+  background-color: #023031;
+  box-shadow: 0 4px 1px rgba(0, 0, 0, 0.25);
+  display: flex;
+  height: 100px;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.informations-header img {
+  margin: 0 0 30px 50px;
+}
+
+.informations-header div {
+  background-color: white;
+  border-radius: 50px;
+  height: 40px;
+  margin: 30px 50px 0;
+  text-align: center;
+  width: 199px;
+}
+
+.loading {
+  color: #036b52;
+  font-family: sans-serif;
+  font-size: 50px;
+  margin-top: 15%;
+  text-align: center;
+}
+
+.page-login .loading {
+  color: white;
+  margin-top: 10%;
+}
+
+.informations-header div h3 {
+  color: #29313d;
+  font-family: sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.links-header {
+  display: flex;
+  height: 50px;
+  justify-content: space-between;
+  text-align: center;
+  text-decoration: none;
+}
+
+.links-header a {
+  background-color: #f0f2f5;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
+  color: #2fc18c;
+  font-family: sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  height: 40px;
+  padding: 15px 0 10px;
+  text-decoration: none;
+  width: 33.3%;
+}
+
+.links-header a:hover {
+  background-color: #036b52;
+  color: white;
+}
+
+.search-page form {
+  align-items: center;
+  display: flex;
+  margin: 125px auto 0;
+  width: 539px;
+}
+
+.search-page .result-message {
+  color: #036b52;
+  font-family: sans-serif;
+  font-size: 40px;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.search-page form input {
+  border: 3px solid #036b52;
+  border-radius: 6px;
+  color: #29313d;
+  font-size: 20px;
+  height: 22px;
+  padding: 12px 16px;
+  text-align: center;
+  width: 350px;
+}
+
+.section-albums {
+  align-items: center;
+  background-color: #023031;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 50px auto;
+  padding-top: 55px;
+  text-align: center;
+  width: 90%;
+}
+
+.section-albums .album {
+  background-color: #036b52;
+  border-radius: 20px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 50px;
+  padding-top: 15px;
+  text-decoration: none;
+  width: 500px;
+}
+
+.section-albums .album h4 {
+  margin: 10px auto;
+}
+
+.section-albums .album h5 {
+  margin: 10px auto;
+}
+
+.section-albums .album:hover {
+  box-shadow: 0 5px 15px 15px rgba(0, 0, 0, 0.5);
+}
+
+.album-musics {
+  text-align: center;
+}
+
+.album-musics .album-informations {
+  background-color: #036b52;
+  border-radius: 20px;
+  color: white;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  height: 185px;
+  margin: 100px auto 50px;
+  padding-top: 15px;
+  text-decoration: none;
+  width: 400px;
+}
+
+.album-musics .album-informations h4 {
+  margin-top: 10px;
+}
+
+.album-musics .album-informations h5 {
+  margin-top: -15px;
+}
+
+.album-musics .music {
+  align-items: center;
+  background-color: #036b52;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  font-family: sans-serif;
+  font-size: 25px;
+  justify-content: space-around;
+  margin: 0 auto 50px;
+  width: 70%;
+}
+
+.album-musics .music h4 {
+  width: 500px;
+}
+
+.album-musics .music label {
+  align-items: center;
+  display: flex;
+}
+
+.album-musics .music input {
+  height: 15px;
+  margin-right: 5px;
+  width: 20px;
+}
+
+.album-musics .music .loading {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+}

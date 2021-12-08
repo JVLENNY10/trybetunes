@@ -51,26 +51,28 @@ class MusicCard extends React.Component {
     } = this.props;
 
     return (
-      loading ? <Loading /> : (
-        <div>
-          <h4>{ trackName }</h4>
+      <div className="music">
+        <h4>{ trackName }</h4>
 
-          <audio data-testid={ audioComponent } src={ previewUrl } controls>
-            <track kind="captions" />
-          </audio>
+        <audio data-testid={ audioComponent } src={ previewUrl } controls>
+          <track kind="captions" />
+        </audio>
 
-          <label htmlFor={ checkboxMusicTrackId }>
-            <input
-              checked={ isFavorite }
-              data-testid={ checkboxMusicTrackId }
-              id={ checkboxMusicTrackId }
-              onChange={ this.markCheckbox }
-              type="checkbox"
-            />
-            Favorita
-          </label>
-        </div>
-      )
+        {
+          loading ? <Loading /> : (
+            <label htmlFor={ checkboxMusicTrackId }>
+              <input
+                checked={ isFavorite }
+                data-testid={ checkboxMusicTrackId }
+                id={ checkboxMusicTrackId }
+                onChange={ this.markCheckbox }
+                type="checkbox"
+              />
+              Favorita
+            </label>
+          )
+        }
+      </div>
     );
   }
 }

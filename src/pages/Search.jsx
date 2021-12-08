@@ -59,20 +59,21 @@ class Search extends React.Component {
     } = this.state;
 
     return (
-      <div data-testid="page-search">
+      <div className="search-page" data-testid="page-search">
         <Header />
 
-        <form>
-          <input
-            data-testid="search-artist-input"
-            name={ input }
-            onChange={ this.inputChange }
-            type="text"
-            value={ input }
-          />
+        {
+          loading ? <Loading /> : (
+            <form>
+              <input
+                data-testid="search-artist-input"
+                name={ input }
+                onChange={ this.inputChange }
+                placeholder="Informe um artista ou álbum"
+                type="text"
+                value={ input }
+              />
 
-          {
-            loading ? <Loading /> : (
               <button
                 data-testid="search-artist-button"
                 disabled={ buttonDisabled }
@@ -81,41 +82,40 @@ class Search extends React.Component {
               >
                 Pesquisar
               </button>
-            )
-          }
-        </form>
+            </form>
+          )
+        }
 
         {
-          searched && (
+          !loading && searched && (
             albums.length > 0 ? (
-              <section>
-                <h4>
+              <>
+                <h4 className="result-message">
                   Resultado de álbuns de:
                   { resultMessage }
                 </h4>
 
-                <section>
+                <section className="section-albums">
                   {
                     albums.map((album) => (
                       <Link
+                        className="album"
                         data-testid={ `link-to-album-${album.collectionId}` }
                         key={ album.collectionId }
                         to={ `/album/${album.collectionId}` }
                       >
-                        <div>
-                          <img
-                            alt={ album.collectionName }
-                            src={ album.artworkUrl100 }
-                          />
-                          <h4>{ album.collectionName }</h4>
-                          <h5>{ album.artistName }</h5>
-                        </div>
+                        <img
+                          alt={ album.collectionName }
+                          src={ album.artworkUrl100 }
+                        />
+                        <h4>{ album.collectionName }</h4>
+                        <h5>{ album.artistName }</h5>
                       </Link>
                     ))
                   }
                 </section>
-              </section>
-            ) : 'Nenhum álbum foi encontrado'
+              </>
+            ) : <h4 className="result-message">Nenhum álbum foi encontrado</h4>
           )
         }
       </div>

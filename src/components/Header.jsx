@@ -25,22 +25,20 @@ class Header extends React.Component {
 
     return (
       <header data-testid="header-component">
-        <section className="informations-header">
+        <div className="informations-header">
           <img alt="trybe-tunes-icon" src={ trybeTunesIcon } />
           <div>
             {
-              loading ? <Loading /> : (
-                <h3 data-testid="header-user-name">{ userName }</h3>
-              )
+              loading ? <Loading /> : <h3 data-testid="header-user-name">{ userName }</h3>
             }
           </div>
-        </section>
+        </div>
 
-        <section className="links-header">
+        <nav className="links-header">
           <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
           <Link data-testid="link-to-favorites" to="/favorites">Favoritas</Link>
           <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
-        </section>
+        </nav>
       </header>
     );
   }

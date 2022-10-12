@@ -14,7 +14,7 @@ class Search extends React.Component {
       input: '',
       loading: false,
       resultMessage: '',
-      searched: false,
+      search: false,
     };
 
     this.enableButton = this.enableButton.bind(this);
@@ -24,28 +24,35 @@ class Search extends React.Component {
 
   enableButton() {
     const { input } = this.state;
-    if (input.length >= 2) return false;
+
+    if (input.length >= 2) {
+      return false;
+    }
+
     return true;
   }
 
   inputChange({ target }) {
     const { value } = target;
+
     this.setState({ input: value },
       () => this.setState({ buttonDisabled: this.enableButton() }));
   }
 
-  submitButton(event) {
+  async submitButton(event) {
     event.preventDefault();
     const { input } = this.state;
     this.setState({ input: '', loading: true });
-    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o albums corretamente.
-    searchAlbumsAPI(input).then((objectsAlbums) => this.setState({
-      albums: objectsAlbums,
+
+    // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o "albums" corretamente.
+    const albums = await searchAlbumsAPI(input);
+    this.setState({
+      albums,
       buttonDisabled: true,
       loading: false,
-      searched: true,
+      search: true,
       resultMessage: ` ${input}`,
-    }));
+    });
   }
 
   render() {
@@ -55,7 +62,7 @@ class Search extends React.Component {
       input,
       loading,
       resultMessage,
-      searched,
+      search,
     } = this.state;
 
     return (
@@ -87,7 +94,7 @@ class Search extends React.Component {
         }
 
         {
-          !loading && searched && (
+          !loading && search && (
             albums.length > 0 ? (
               <>
                 <h4 className="result-message">
@@ -104,10 +111,7 @@ class Search extends React.Component {
                         key={ album.collectionId }
                         to={ `/album/${album.collectionId}` }
                       >
-                        <img
-                          alt={ album.collectionName }
-                          src={ album.artworkUrl100 }
-                        />
+                        <img alt={ album.collectionName } src={ album.artworkUrl100 } />
                         <h4>{ album.collectionName }</h4>
                         <h5>{ album.artistName }</h5>
                       </Link>

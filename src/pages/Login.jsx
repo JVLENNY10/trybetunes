@@ -7,7 +7,14 @@ import trybeTunesIcon from '../icons/trybe-tunes-icon.png';
 class Login extends React.Component {
   constructor() {
     super();
-    this.state = { buttonDisabled: true, input: '', loading: false, redirecting: false };
+
+    this.state = {
+      buttonDisabled: true,
+      input: '',
+      loading: false,
+      redirecting: false,
+    };
+
     this.enableButton = this.enableButton.bind(this);
     this.inputChange = this.inputChange.bind(this);
     this.submitButton = this.submitButton.bind(this);
@@ -16,23 +23,28 @@ class Login extends React.Component {
   enableButton() {
     const minInput = 3;
     const { input } = this.state;
-    if (input.length >= minInput) return false;
+
+    if (input.length >= minInput) {
+      return false;
+    }
+
     return true;
   }
 
   inputChange({ target }) {
     const { value } = target;
+
     this.setState({ input: value },
       () => this.setState({ buttonDisabled: this.enableButton() }));
   }
 
-  submitButton(event) {
+  async submitButton(event) {
     event.preventDefault();
     const { input } = this.state;
     this.setState({ loading: true });
-    // Ju Barcelos(T16) me ajudou com essa parte do then().
-    createUser({ name: input })
-      .then(() => this.setState({ loading: false, redirecting: true }));
+
+    await createUser({ name: input });
+    this.setState({ loading: false, redirecting: true });
   }
 
   render() {

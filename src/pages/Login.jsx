@@ -11,8 +11,8 @@ class Login extends React.Component {
     this.state = {
       buttonDisabled: true,
       input: '',
-      loading: false,
-      redirecting: false,
+      isLoading: false,
+      isRedirecting: false,
     };
 
     this.enableButton = this.enableButton.bind(this);
@@ -41,21 +41,21 @@ class Login extends React.Component {
   async submitButton(event) {
     event.preventDefault();
     const { input } = this.state;
-    this.setState({ loading: true });
+    this.setState({ isLoading: true });
 
     await createUser({ name: input });
-    this.setState({ loading: false, redirecting: true });
+    this.setState({ isLoading: false, isRedirecting: true });
   }
 
   render() {
-    const { buttonDisabled, input, loading, redirecting } = this.state;
+    const { buttonDisabled, input, isLoading, isRedirecting } = this.state;
 
     return (
       <div className="page-login" data-testid="page-login">
         <img alt="trybe-tunes-icon" src={ trybeTunesIcon } />
 
         {
-          loading ? <Loading /> : (
+          isLoading ? <Loading /> : (
             <form>
               <input
                 data-testid="login-name-input"
@@ -78,7 +78,7 @@ class Login extends React.Component {
           )
         }
 
-        { redirecting && <Redirect to="/search" /> }
+        { isRedirecting && <Redirect to="/search" /> }
       </div>
     );
   }

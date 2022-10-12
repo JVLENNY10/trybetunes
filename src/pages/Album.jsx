@@ -9,7 +9,7 @@ class Album extends React.Component {
     super();
 
     this.state = {
-      loading: true,
+      isLoading: true,
       musics: [],
     };
 
@@ -26,18 +26,18 @@ class Album extends React.Component {
 
   async loadMusics(albumId) {
     const musics = await getMusics(albumId);
-    this.setState({ loading: false, musics });
+    this.setState({ isLoading: false, musics });
   }
 
   render() {
-    const { loading, musics } = this.state;
+    const { isLoading, musics } = this.state;
 
     return (
       <div className="album-musics" data-testid="page-album">
         <Header />
 
         {
-          loading ? <Loading /> : (
+          isLoading ? <Loading /> : (
             musics.map((song, index) => (
               index === 0 ? (
                 <div className="album-informations" key={ song.collectionId }>

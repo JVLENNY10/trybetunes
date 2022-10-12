@@ -12,9 +12,9 @@ class Search extends React.Component {
       albums: [],
       buttonDisabled: true,
       input: '',
-      loading: false,
+      isLoading: false,
+      isSearching: false,
       resultMessage: '',
-      search: false,
     };
 
     this.enableButton = this.enableButton.bind(this);
@@ -42,15 +42,15 @@ class Search extends React.Component {
   async submitButton(event) {
     event.preventDefault();
     const { input } = this.state;
-    this.setState({ input: '', loading: true });
+    this.setState({ input: '', isLoading: true });
 
     // Emerson(T16) e Rafael Santos(T16) me ajudaram a posicionar o "albums" corretamente.
     const albums = await searchAlbumsAPI(input);
     this.setState({
       albums,
       buttonDisabled: true,
-      loading: false,
-      search: true,
+      isLoading: false,
+      isSearching: true,
       resultMessage: ` ${input}`,
     });
   }
@@ -60,9 +60,9 @@ class Search extends React.Component {
       albums,
       buttonDisabled,
       input,
-      loading,
+      isLoading,
+      isSearching,
       resultMessage,
-      search,
     } = this.state;
 
     return (
@@ -70,7 +70,7 @@ class Search extends React.Component {
         <Header />
 
         {
-          loading ? <Loading /> : (
+          isLoading ? <Loading /> : (
             <form>
               <input
                 data-testid="search-artist-input"
@@ -94,7 +94,7 @@ class Search extends React.Component {
         }
 
         {
-          !loading && search && (
+          !isLoading && isSearching && (
             albums.length > 0 ? (
               <>
                 <h4 className="result-message">

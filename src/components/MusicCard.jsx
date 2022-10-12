@@ -1,12 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
+
 import Loading from './Loading';
+import { addSong, getFavoriteSongs, removeSong } from '../services/favoriteSongsAPI';
 
 class MusicCard extends React.Component {
   constructor() {
     super();
-    this.state = { favoriteSongs: [], isFavorite: false, loading: false };
+
+    this.state = {
+      favoriteSongs: [],
+      isFavorite: false,
+      isLoading: false,
+    };
+
     this.checkFavoriteSongs = this.checkFavoriteSongs.bind(this);
     this.loadFavoriteSongs = this.loadFavoriteSongs.bind(this);
     this.markCheckbox = this.markCheckbox.bind(this);
@@ -19,37 +26,37 @@ class MusicCard extends React.Component {
   checkFavoriteSongs() {
     const { trackId } = this.props;
     const { favoriteSongs } = this.state;
-    return favoriteSongs.some((music) => music.trackId === trackId);
+    return favoriteSongs.some((song) => song.trackId === trackId);
   }
 
-  loadFavoriteSongs() {
-    this.setState({ loading: true });
-    getFavoriteSongs().then((song) => (
-      this.setState({ favoriteSongs: song, loading: false },
-        () => this.setState({ isFavorite: this.checkFavoriteSongs() }))));
+  async loadFavoriteSongs() {
+    this.setState({ isLoading: true });
+    const favoriteSongs = await getFavoriteSongs();
+
+    this.setState({ favoriteSongs, isLoading: false },
+      () => this.setState({ isFavorite: this.checkFavoriteSongs() }));
   }
 
   // João Victor Veidz(T16) me ajudou a chegar na lógica do if else e depois setar o estado de acordo com a condição.
-  markCheckbox() {
+  async markCheckbox() {
     const { song } = this.props;
     const { isFavorite } = this.state;
+    this.setState({ isLoading: true });
+
     if (!isFavorite) {
-      this.setState({ isFavorite: true, loading: true });
-      addSong(song).then(() => this.setState({ loading: false }));
+      await addSong(song);
+      this.setState({ isFavorite: true });
     } else {
-      this.setState({ isFavorite: false, loading: true });
-      removeSong(song).then(() => this.setState({ loading: false }));
+      await removeSong(song);
+      this.setState({ isFavorite: false });
     }
+
+    this.setState({ isLoading: false });
   }
 
   render() {
-    const { isFavorite, loading } = this.state;
-    const {
-      audioComponent,
-      checkboxMusicTrackId,
-      previewUrl,
-      trackName,
-    } = this.props;
+    const { isFavorite, isLoading } = this.state;
+    const { audioComponent, checkboxMusicTrackId, previewUrl, trackName } = this.props;
 
     return (
       <div className="music">
@@ -60,7 +67,7 @@ class MusicCard extends React.Component {
         </audio>
 
         {
-          loading ? <Loading /> : (
+          isLoading ? <Loading /> : (
             <label htmlFor={ checkboxMusicTrackId }>
               <input
                 checked={ isFavorite }
@@ -78,6 +85,8 @@ class MusicCard extends React.Component {
   }
 }
 
+export default MusicCard;
+
 MusicCard.propTypes = {
   audioComponent: PropTypes.string.isRequired,
   checkboxMusicTrackId: PropTypes.string.isRequired,
@@ -86,5 +95,3 @@ MusicCard.propTypes = {
   trackId: PropTypes.number.isRequired,
   trackName: PropTypes.string.isRequired,
 };
-
-export default MusicCard;

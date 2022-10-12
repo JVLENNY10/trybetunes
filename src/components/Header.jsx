@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import Loading from './Loading';
 import { getUser } from '../services/userAPI';
 import trybeTunesIcon from '../icons/trybe-tunes-icon.png';
-import Loading from './Loading';
 
 class Header extends React.Component {
   constructor() {
     super();
-    this.state = { loading: true, userName: '' };
+
+    this.state = {
+      isLoading: true,
+      userName: '',
+    };
+
     this.loadUserName = this.loadUserName.bind(this);
   }
 
@@ -16,12 +22,13 @@ class Header extends React.Component {
     this.loadUserName();
   }
 
-  loadUserName() {
-    getUser().then((user) => this.setState({ loading: false, userName: user.name }));
+  async loadUserName() {
+    const { name: userName } = await getUser();
+    this.setState({ isLoading: false, userName });
   }
 
   render() {
-    const { loading, userName } = this.state;
+    const { isLoading, userName } = this.state;
 
     return (
       <header data-testid="header-component">
@@ -29,7 +36,9 @@ class Header extends React.Component {
           <img alt="trybe-tunes-icon" src={ trybeTunesIcon } />
           <div>
             {
-              loading ? <Loading /> : <h3 data-testid="header-user-name">{ userName }</h3>
+              isLoading ? <Loading /> : (
+                <h3 data-testid="header-user-name">{ userName }</h3>
+              )
             }
           </div>
         </div>

@@ -41,10 +41,9 @@ class Login extends React.Component {
   async submitButton(event) {
     event.preventDefault();
     const { input } = this.state;
-    this.setState({ isLoading: true });
 
+    this.setState({ isLoading: true, isRedirecting: true });
     await createUser({ name: input });
-    this.setState({ isLoading: false, isRedirecting: true });
   }
 
   render() {

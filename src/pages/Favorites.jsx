@@ -20,10 +20,6 @@ class Favorites extends React.Component {
     this.loadFavoritesSongs();
   }
 
-  // componentDidUpdate() {
-  //   getFavoriteSongs().then((songs) => this.setState({ musics: songs }));
-  // }
-
   async loadFavoritesSongs() {
     const songs = await getFavoriteSongs();
     this.setState({ isLoanding: false, songs });
@@ -43,6 +39,7 @@ class Favorites extends React.Component {
                 audioComponent="audio-component"
                 checkboxMusicTrackId={ `checkbox-music-${song.trackId}` }
                 key={ song.trackId }
+                loadFavoritesSongs={ this.loadFavoritesSongs }
                 previewUrl={ song.previewUrl }
                 song={ song }
                 trackId={ song.trackId }

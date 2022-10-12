@@ -39,7 +39,7 @@ class MusicCard extends React.Component {
 
   // João Victor Veidz(T16) me ajudou a chegar na lógica do if else e depois setar o estado de acordo com a condição.
   async markCheckbox() {
-    const { song } = this.props;
+    const { song, loadFavoritesSongs } = this.props;
     const { isFavorite } = this.state;
     this.setState({ isLoading: true });
 
@@ -48,6 +48,7 @@ class MusicCard extends React.Component {
       this.setState({ isFavorite: true });
     } else {
       await removeSong(song);
+      await loadFavoritesSongs();
       this.setState({ isFavorite: false });
     }
 
@@ -90,6 +91,7 @@ export default MusicCard;
 MusicCard.propTypes = {
   audioComponent: PropTypes.string.isRequired,
   checkboxMusicTrackId: PropTypes.string.isRequired,
+  loadFavoritesSongs: PropTypes.func.isRequired,
   previewUrl: PropTypes.string.isRequired,
   song: PropTypes.shape().isRequired,
   trackId: PropTypes.number.isRequired,

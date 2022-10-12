@@ -7,7 +7,12 @@ import MusicCard from '../components/MusicCard';
 class Album extends React.Component {
   constructor() {
     super();
-    this.state = { loading: true, musics: [] };
+
+    this.state = {
+      loading: true,
+      musics: [],
+    };
+
     this.loadMusics = this.loadMusics.bind(this);
   }
 
@@ -19,9 +24,9 @@ class Album extends React.Component {
     this.loadMusics(albumId[albumId.length - 1]);
   }
 
-  loadMusics(albumId) {
-    getMusics(albumId).then((musicObjects) => (
-      this.setState({ loading: false, musics: musicObjects })));
+  async loadMusics(albumId) {
+    const musics = await getMusics(albumId);
+    this.setState({ loading: false, musics });
   }
 
   render() {

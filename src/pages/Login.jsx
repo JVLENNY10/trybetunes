@@ -1,5 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
+
+import '../css/pages/login.css';
 import Loading from '../components/Loading';
 import { createUser } from '../services/userAPI';
 import trybeTunesIcon from '../icons/trybe-tunes-icon.png';

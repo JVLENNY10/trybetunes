@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.page-not-found {
+  align-items: center;
+  background-color: #036b52;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+  font-size: 150%;
+  height: 100vh;
+  justify-content: center;
+}
+
+.page-not-found h1 {
+  margin-bottom: 20px;
+}
+
+.page-not-found h2 {
+  margin-bottom: 150px;
+}

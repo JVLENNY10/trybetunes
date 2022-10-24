@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Loading from './Loading';
+import '../css/components/header.css';
 import { getUser } from '../services/userAPI';
 import trybeTunesIcon from '../icons/trybe-tunes-icon.png';
 

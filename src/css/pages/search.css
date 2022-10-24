@@ -41,6 +41,7 @@
 .search-page .result-message {
   color: #036b52;
   font-size: 145%;
+  margin: 25px auto;
   text-align: center;
 }
 

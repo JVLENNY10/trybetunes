@@ -1,4 +1,6 @@
 import React from 'react';
+
+import '../css/pages/album.css';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import getMusics from '../services/musicsAPI';
@@ -33,14 +35,14 @@ class Album extends React.Component {
     const { isLoading, musics } = this.state;
 
     return (
-      <div className="album-musics" data-testid="page-album">
+      <div className="page-album" data-testid="page-album">
         <Header />
 
         {
           isLoading ? <Loading /> : (
             musics.map((song, index) => (
               index === 0 ? (
-                <div className="album-informations" key={ song.collectionId }>
+                <div className="album" key={ song.collectionId }>
                   <img alt={ song.collectionName } src={ song.artworkUrl100 } />
                   <h4 data-testid="album-name">{ song.collectionName }</h4>
                   <h5 data-testid="artist-name">{ song.artistName }</h5>

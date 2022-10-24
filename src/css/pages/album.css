@@ -1,0 +1,29 @@
+.page-album {
+  color: white;
+  font-family: sans-serif;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.page-album .album {
+  background-color: #036b52;
+  border-radius: 20px;
+  height: 200px;
+  margin: 50px auto 0;
+  max-width: 500px;
+  width: 85%;
+}
+
+.page-album .album img {
+  margin: 20px auto 0;
+}
+
+.page-album .album h4 {
+  font-size: 110%;
+  margin: 10px auto 0;
+}
+
+.page-album .album h5 {
+  font-size: 100%;
+  margin: 5px auto;
+}

@@ -1,13 +1,13 @@
-import './App.css';
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import ProfileEdit from './pages/ProfileEdit';
-import Favorites from './pages/Favorites';
-import NotFound from './pages/NotFound';
-import Profile from './pages/Profile';
-import Search from './pages/Search';
+
 import Album from './pages/Album';
 import Login from './pages/Login';
+import Search from './pages/Search';
+import Profile from './pages/Profile';
+import NotFound from './pages/NotFound';
+import Favorites from './pages/Favorites';
+import ProfileEdit from './pages/ProfileEdit';
 
 class App extends React.Component {
   render() {

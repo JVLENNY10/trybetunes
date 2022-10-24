@@ -1,0 +1,55 @@
+.page-profile {
+  color: white;
+  font-family: sans-serif;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.page-profile h1 {
+  color: #036b52;
+  margin: 30px auto 0;
+}
+
+.page-profile .profile {
+  background: #036b52;
+  border-radius: 20px;
+  margin: 20px auto 0;
+  max-width: 500px;
+  padding: 20px 0 25px;
+  width: 80%;
+}
+
+.page-profile .profile img {
+  border-radius: 100px;
+  height: 190px;
+  margin: 0 auto;
+  max-width: 200px;
+  width: 90%;
+}
+
+.page-profile .profile .profile-infos {
+  margin-left: 20px;
+  text-align: left;
+}
+
+.page-profile .profile .profile-infos p {
+  font-size: 130%;
+  margin: 5px 0 35px;
+  text-align: left;
+}
+
+.page-profile .edit-profile {
+  text-decoration: none;
+}
+
+.page-profile .profile .edit-profile p {
+  background-color: white;
+  border-radius: 10px;
+  color: #036b52;
+  font-size: 130%;
+  margin: 0 auto;
+  padding: 10px 0;
+  text-align: center;
+  text-decoration: none;
+  width: 200px;
+}

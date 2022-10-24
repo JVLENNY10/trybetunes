@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+import '../css/pages/profile.css';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser } from '../services/userAPI';
@@ -29,31 +31,37 @@ class Profile extends React.Component {
     const { isLoading, userInfos } = this.state;
 
     return (
-      <div data-testid="page-profile">
+      <div className="page-profile" data-testid="page-profile">
         <Header />
 
         {
           isLoading ? <Loading /> : (
-            <div>
-              <img
-                alt={ `Foto de ${userInfos.name}` }
-                data-testid="profile-image"
-                src={ userInfos.image }
-              />
+            <>
+              <h1>Perfil</h1>
 
-              <Link className="album" to="/profile/edit">
-                Editar perfil
-              </Link>
+              <div className="profile">
+                <img
+                  alt={ `Foto de ${userInfos.name}` }
+                  data-testid="profile-image"
+                  src={ userInfos.image }
+                />
 
-              <h2>Nome:</h2>
-              <span>{ userInfos.name }</span>
+                <section className="profile-infos">
+                  <h2>Nome: </h2>
+                  <p>{ userInfos.name }</p>
 
-              <h2>E-Mail:</h2>
-              <span>{ userInfos.email }</span>
+                  <h2>E-Mail: </h2>
+                  <p>{ userInfos.email }</p>
 
-              <h2>Descrição:</h2>
-              <p>{ userInfos.description }</p>
-            </div>
+                  <h2>Descrição: </h2>
+                  <p>{ userInfos.description }</p>
+                </section>
+
+                <Link className="edit-profile" to="/profile/edit">
+                  <p>Editar perfil</p>
+                </Link>
+              </div>
+            </>
           )
         }
       </div>

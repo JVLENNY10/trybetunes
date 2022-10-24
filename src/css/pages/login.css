@@ -9,7 +9,7 @@
 }
 
 .page-login form {
-  background: white;
+  background-color: white;
   border-radius: 30px;
   box-shadow: 0 5px 40px rgba(0, 0, 0, 0.9);
   height: 200px;
@@ -20,10 +20,9 @@
 }
 
 .page-login form input {
-  background: white;
+  background-color: white;
   border: 3px solid #036b52;
   border-radius: 30px;
-  color: #29313d;
   font-size: 20px;
   height: 25px;
   margin: 43px auto 10px;
@@ -33,7 +32,7 @@
 
 .page-login form button {
   align-items: center;
-  background: #036b52;
+  background-color: #036b52;
   border: 3px solid #036b52;
   border-radius: 30px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.9);

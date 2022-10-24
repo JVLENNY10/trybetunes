@@ -1,5 +1,4 @@
 .page-album {
-  color: white;
   font-family: sans-serif;
   padding-bottom: 50px;
   text-align: center;
@@ -8,6 +7,7 @@
 .page-album .album {
   background-color: #036b52;
   border-radius: 20px;
+  color: white;
   height: 200px;
   margin: 50px auto 0;
   max-width: 500px;

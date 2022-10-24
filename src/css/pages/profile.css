@@ -1,5 +1,4 @@
 .page-profile {
-  color: white;
   font-family: sans-serif;
   padding-bottom: 50px;
   text-align: center;
@@ -13,6 +12,7 @@
 .page-profile .profile {
   background-color: #036b52;
   border-radius: 20px;
+  color: white;
   margin: 20px auto 0;
   max-width: 500px;
   padding: 20px 0 25px;

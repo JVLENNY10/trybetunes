@@ -24,6 +24,10 @@
   width: 35%;
 }
 
+.informations-header div .loading {
+  color: black;
+}
+
 .informations-header div h3 {
   font-size: 20px;
   font-weight: 500;

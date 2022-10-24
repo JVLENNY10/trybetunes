@@ -1,5 +1,4 @@
 .page-profile-edit {
-  color: white;
   font-family: sans-serif;
   padding-bottom: 50px;
   text-align: center;
@@ -13,11 +12,16 @@
 .page-profile-edit form {
   background-color: #036b52;
   border-radius: 20px;
+  color: white;
   margin: 20px auto 0;
   max-width: 500px;
   padding: 5px 20px 30px;
   text-align: left;
   width: 80%;
+}
+
+.page-profile-edit h2 {
+  margin: 10px auto 5px;
 }
 
 .page-profile-edit form textarea {

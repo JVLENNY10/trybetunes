@@ -1,6 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
+import '../css/pages/profileEdit.css';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import { getUser, updateUser } from '../services/userAPI';
@@ -76,57 +77,61 @@ class ProfileEdit extends React.Component {
     } = this.state;
 
     return (
-      <div data-testid="page-profile-edit">
+      <div className="page-profile-edit" data-testid="page-profile-edit">
         <Header />
 
         {
           isLoading ? <Loading /> : (
-            <form>
-              <h2>Nova imagem:</h2>
-              <input
-                data-testid="edit-input-image"
-                name="image"
-                onChange={ this.inputChange }
-                type="text"
-                value={ image }
-              />
+            <>
+              <h1>Editar Perfil</h1>
 
-              <h2>Novo nome:</h2>
-              <input
-                data-testid="edit-input-name"
-                name="name"
-                onChange={ this.inputChange }
-                type="text"
-                value={ name }
-              />
+              <form>
+                <h2>Nova imagem:</h2>
+                <textarea
+                  data-testid="edit-input-image"
+                  name="image"
+                  onChange={ this.inputChange }
+                  type="text"
+                  value={ image }
+                />
 
-              <h2>Novo E-Mail:</h2>
-              <input
-                data-testid="edit-input-email"
-                name="email"
-                onChange={ this.inputChange }
-                type="text"
-                value={ email }
-              />
+                <h2>Novo nome:</h2>
+                <input
+                  data-testid="edit-input-name"
+                  name="name"
+                  onChange={ this.inputChange }
+                  type="text"
+                  value={ name }
+                />
 
-              <h2>Nova descrição:</h2>
-              <input
-                data-testid="edit-input-description"
-                name="description"
-                onChange={ this.inputChange }
-                type="text"
-                value={ description }
-              />
+                <h2>Novo E-Mail:</h2>
+                <input
+                  data-testid="edit-input-email"
+                  name="email"
+                  onChange={ this.inputChange }
+                  type="text"
+                  value={ email }
+                />
 
-              <button
-                data-testid="edit-button-save"
-                disabled={ buttonDisabled }
-                onClick={ this.submitButton }
-                type="submit"
-              >
-                Editar perfil
-              </button>
-            </form>
+                <h2>Nova descrição:</h2>
+                <input
+                  data-testid="edit-input-description"
+                  name="description"
+                  onChange={ this.inputChange }
+                  type="text"
+                  value={ description }
+                />
+
+                <button
+                  data-testid="edit-button-save"
+                  disabled={ buttonDisabled }
+                  onClick={ this.submitButton }
+                  type="submit"
+                >
+                  Editar perfil
+                </button>
+              </form>
+            </>
           )
         }
 

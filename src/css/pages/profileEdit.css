@@ -1,0 +1,57 @@
+.page-profile-edit {
+  color: white;
+  font-family: sans-serif;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
+.page-profile-edit h1 {
+  color: #036b52;
+  margin: 30px auto 0;
+}
+
+.page-profile-edit form {
+  background: #036b52;
+  border-radius: 20px;
+  margin: 20px auto 0;
+  max-width: 500px;
+  padding: 5px 20px 30px;
+  text-align: left;
+  width: 80%;
+}
+
+.page-profile-edit form textarea {
+  border: 0;
+  border-radius: 10px;
+  font-size: 20px;
+  height: 100px;
+  max-width: 85%;
+  min-width: 85%;
+  padding: 10px 15px;
+  width: 85%;
+}
+
+.page-profile-edit form input {
+  border: 0;
+  border-radius: 10px;
+  font-size: 20px;
+  height: 22px;
+  padding: 10px 15px;
+  width: 85%;
+}
+
+.page-profile-edit form button {
+  background-color: white;
+  border: 0;
+  border-radius: 10px;
+  color: #036b52;
+  font-size: 130%;
+  margin: 35px auto 0;
+  padding: 10px 0;
+  text-align: center;
+  width: 200px;
+}
+
+.page-profile-edit form button:hover {
+  cursor: pointer;
+}

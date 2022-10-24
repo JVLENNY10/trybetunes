@@ -1,4 +1,6 @@
 import React from 'react';
+
+import '../css/pages/favorites.css';
 import Header from '../components/Header';
 import Loading from '../components/Loading';
 import MusicCard from '../components/MusicCard';
@@ -29,23 +31,29 @@ class Favorites extends React.Component {
     const { isLoanding, songs } = this.state;
 
     return (
-      <div className="album-musics" data-testid="page-favorites">
+      <div className="page-favorites" data-testid="page-favorites">
         <Header />
 
         {
           isLoanding ? <Loading /> : (
-            songs.map((song) => (
-              <MusicCard
-                audioComponent="audio-component"
-                checkboxMusicTrackId={ `checkbox-music-${song.trackId}` }
-                key={ song.trackId }
-                loadFavoritesSongs={ this.loadFavoritesSongs }
-                previewUrl={ song.previewUrl }
-                song={ song }
-                trackId={ song.trackId }
-                trackName={ song.trackName }
-              />
-            ))
+            <>
+              <h1 className="favorites-title">Músicas Favoritas:</h1>
+
+              {
+                songs.map((song) => (
+                  <MusicCard
+                    audioComponent="audio-component"
+                    checkboxMusicTrackId={ `checkbox-music-${song.trackId}` }
+                    key={ song.trackId }
+                    loadFavoritesSongs={ this.loadFavoritesSongs }
+                    previewUrl={ song.previewUrl }
+                    song={ song }
+                    trackId={ song.trackId }
+                    trackName={ song.trackName }
+                  />
+                ))
+              }
+            </>
           )
         }
       </div>

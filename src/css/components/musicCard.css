@@ -1,0 +1,39 @@
+.music {
+  align-items: center;
+  background-color: #036b52;
+  border-radius: 20px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  font-size: 150%;
+  height: 200px;
+  justify-content: space-around;
+  margin: 15px auto 0;
+  max-width: 1000px;
+  width: 85%;
+}
+
+.music h4 {
+  margin: 20px auto 5px;
+  max-width: 250px;
+}
+
+.music audio {
+  margin: 5px auto;
+}
+
+.music input {
+  margin-right: 5px;
+}
+
+.music label {
+  align-items: center;
+  display: flex;
+  margin: 0 auto 20px;
+}
+
+.music .loading {
+  color: white;
+  font-size: 90%;
+  margin: 0 auto 20px;
+}

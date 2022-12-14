@@ -45,9 +45,15 @@ class Header extends React.Component {
         </div>
 
         <nav className="links-header">
-          <Link data-testid="link-to-search" to="/search">Pesquisa</Link>
-          <Link data-testid="link-to-favorites" to="/favorites">Favoritas</Link>
-          <Link data-testid="link-to-profile" to="/profile">Perfil</Link>
+          <Link data-testid="link-to-search" to="/trybetunes/search">
+            Pesquisa
+          </Link>
+          <Link data-testid="link-to-favorites" to="/trybetunes/favorites">
+            Favoritas
+          </Link>
+          <Link data-testid="link-to-profile" to="/trybetunes/profile">
+            Perfil
+          </Link>
         </nav>
       </header>
     );

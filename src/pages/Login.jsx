@@ -79,7 +79,7 @@ class Login extends React.Component {
           )
         }
 
-        { isRedirecting && <Redirect to="/search" /> }
+        { isRedirecting && <Redirect to="/trybetunes/search" /> }
       </div>
     );
   }

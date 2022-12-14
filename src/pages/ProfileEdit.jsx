@@ -135,7 +135,7 @@ class ProfileEdit extends React.Component {
           )
         }
 
-        { isRedirecting && <Redirect to="/profile" /> }
+        { isRedirecting && <Redirect to="/trybetunes/profile" /> }
       </div>
     );
   }

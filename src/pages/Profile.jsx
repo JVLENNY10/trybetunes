@@ -57,7 +57,7 @@ class Profile extends React.Component {
                   <p>{ userInfos.description }</p>
                 </section>
 
-                <Link className="edit-profile" to="/profile/edit">
+                <Link className="edit-profile" to="/trybetunes/profile/edit">
                   <p>Editar perfil</p>
                 </Link>
               </div>
